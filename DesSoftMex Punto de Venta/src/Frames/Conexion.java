@@ -7,6 +7,7 @@ package Frames;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -21,8 +22,8 @@ public class Conexion {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             cn = DriverManager.getConnection("jdbc:mysql://127.0.0.1/expendio","root","");
-            System.out.println("Conexión exitosa");
-        }catch(Exception ex){
+            System.out.println("Conexión exitosa a la BD");
+        }catch(ClassNotFoundException | SQLException ex){
             System.out.println(ex.getMessage());
         }
         return cn;

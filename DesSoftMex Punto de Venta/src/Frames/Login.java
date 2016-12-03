@@ -2,23 +2,38 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * @author Héctor Léon @puagh on GitHub
  */
 package Frames;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author InfectedMac4
- */
-public class Login extends javax.swing.JFrame {
 
+public class Login extends javax.swing.JFrame {
     Conexion con = new Conexion();
     Connection cn = con.conexion();
+    String sql ="";
+    Statement st;
+    String estado="espera";
     
     public Login() {
         initComponents();
+        
+    }
+    
+    public void enterTeclado(){
+        
+    }
+    
+    public void limpiarFormulario(){
+        textoUsuario.setText("");
+        textoContraseña.setText("");
     }
 
     /**
@@ -58,13 +73,18 @@ public class Login extends javax.swing.JFrame {
         textoContraseña.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Ingresa");
+        jLabel3.setText("Ingrese");
 
         botonLogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botonLogin.setText("Aceptar");
         botonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonLoginActionPerformed(evt);
+            }
+        });
+        botonLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                botonLoginKeyTyped(evt);
             }
         });
 
@@ -146,15 +166,42 @@ public class Login extends javax.swing.JFrame {
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
         String usuario = textoUsuario.getText();
         String contraseña = textoContraseña.getText();
-        if(usuario.equals("admin") && contraseña.equals("1234")){
-            PaginaVentas pantalla = new PaginaVentas();
-            pantalla.setVisible(true);
-            this.dispose();
+        String nombreUsuario="";
+        
+        if(usuario.equals("")||contraseña.equals("")){      //Validación de campos vacíos en formulario
+            JOptionPane.showMessageDialog(null, "Introduza información completa");
+            limpiarFormulario();
         }
         else{
-            JOptionPane.showMessageDialog(null, "El usuario y/o la contraseña son incorrectos");
+            sql = "SELECT * FROM empleado WHERE usuarioEmpleado='"+usuario+"' && passEmpleado='"+contraseña+"'";
+            try {                
+                st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while(rs.next()){
+                    nombreUsuario=rs.getString(2);
+                    estado="Autenticado";
+                    System.out.println(estado+ " usuario "+rs.getString(5));
+                }
+            }catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(estado.equals("Autenticado")){
+                JOptionPane.showMessageDialog(null, "Bienvenido "+nombreUsuario);
+                PaginaVentas pantalla = new PaginaVentas();
+                pantalla.setVisible(true);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos");
+            }
+            limpiarFormulario();
         }
     }//GEN-LAST:event_botonLoginActionPerformed
+
+    private void botonLoginKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonLoginKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_botonLoginKeyTyped
 
     /**
      * @param args the command line arguments
@@ -185,6 +232,7 @@ public class Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Login().setVisible(true);
             }
