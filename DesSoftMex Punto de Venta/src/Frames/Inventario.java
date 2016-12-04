@@ -42,7 +42,7 @@ public final class Inventario extends javax.swing.JFrame {
         modelo.addColumn("Descripción");
         tablaInventario.setModel(modelo);
         
-        String sql = "SELECT * FROM producto";
+        sql = "SELECT * FROM producto";
         String datos[] = new String [5];
         Statement st;
         try {

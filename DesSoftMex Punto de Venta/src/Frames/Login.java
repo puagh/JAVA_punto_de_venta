@@ -27,7 +27,27 @@ public class Login extends javax.swing.JFrame {
         
     }
     
-    public void enterTeclado(){
+    public String autenticando(String idUsuario){
+        System.out.println("idUsuario: "+idUsuario);
+        String permisos = "";
+        sql="SELECT * FROM existen WHERE empleado_idEmpleado='"+idUsuario+"'";
+        try{
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                permisos=rs.getString(1);                           
+            }
+        }
+        catch (SQLException ex){
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(permisos.equals("1")){
+            permisos="Administrador";
+        }
+        else{
+            permisos="Cajero";
+        }
+        return permisos;
         
     }
     
@@ -167,6 +187,8 @@ public class Login extends javax.swing.JFrame {
         String usuario = textoUsuario.getText();
         String contraseña = textoContraseña.getText();
         String nombreUsuario="";
+        String idUsuario="";        //Intentando autentificar al usuario*******
+        String permisos="";
         
         if(usuario.equals("")||contraseña.equals("")){      //Validación de campos vacíos en formulario
             JOptionPane.showMessageDialog(null, "Introduza información completa");
@@ -179,6 +201,9 @@ public class Login extends javax.swing.JFrame {
                 ResultSet rs = st.executeQuery(sql);
                 while(rs.next()){
                     nombreUsuario=rs.getString(2);
+                    idUsuario=rs.getString(1);
+                    permisos=autenticando(idUsuario);
+                    System.out.println("Permisos del usuario: "+permisos);
                     estado="Autenticado";
                     System.out.println(estado+ " usuario "+rs.getString(5));
                 }
@@ -187,9 +212,16 @@ public class Login extends javax.swing.JFrame {
             }
             if(estado.equals("Autenticado")){
                 JOptionPane.showMessageDialog(null, "Bienvenido "+nombreUsuario);
-                PaginaVentas pantalla = new PaginaVentas();
-                pantalla.setVisible(true);
+                if(permisos.equals("Administrador")){
+                    PaginaAdmin pAdmin = new PaginaAdmin();
+                    pAdmin.setVisible(true);
+                    this.dispose();
+                }
+                else{
+                PaginaVentas pVentas = new PaginaVentas();
+                pVentas.setVisible(true);
                 this.dispose();
+                }
             }
             else{
                 JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrectos");

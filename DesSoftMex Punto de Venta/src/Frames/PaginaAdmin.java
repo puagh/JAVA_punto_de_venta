@@ -75,6 +75,11 @@ public final class PaginaAdmin extends javax.swing.JFrame {
 
         botonInventario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonInventario.setText("Inventario");
+        botonInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonInventarioActionPerformed(evt);
+            }
+        });
 
         botonVentas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonVentas.setText("Usuarios");
@@ -196,6 +201,14 @@ public final class PaginaAdmin extends javax.swing.JFrame {
         new Login().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
+
+    private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
+        // TODO add your handling code here:
+        
+        Inventario inv = new Inventario();
+        inv.setVisible(true);
+        
+    }//GEN-LAST:event_botonInventarioActionPerformed
 
     /**
      * @param args the command line arguments
