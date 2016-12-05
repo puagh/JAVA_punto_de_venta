@@ -407,7 +407,7 @@ public final class PaginaVentas extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        
+        //int cantidad=1;
         String codigoProducto = textoCodigo.getText();
         if(codigoProducto.equals("")){
             JOptionPane.showMessageDialog(null, "Ingrese el código del producto");
@@ -423,6 +423,7 @@ public final class PaginaVentas extends javax.swing.JFrame {
                 st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 while(rs.next()){                     //Genera un loop para ejecutar consultas*****
+                    
                     tabla[0]= rs.getString(1);        //Código del Producto
                     System.out.println(tabla[0]);                       //Impresión de INFO
                     tabla[1]= rs.getString(2);        //Nombre del producto
