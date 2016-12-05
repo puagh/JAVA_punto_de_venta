@@ -79,7 +79,6 @@ public final class PaginaVentas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botonAyuda = new javax.swing.JButton();
         botonCerrarSesion = new javax.swing.JButton();
-        botonInventario = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -124,14 +123,6 @@ public final class PaginaVentas extends javax.swing.JFrame {
             }
         });
 
-        botonInventario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        botonInventario.setText("Inventario");
-        botonInventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonInventarioActionPerformed(evt);
-            }
-        });
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Software Punto de Venta - Sección Río");
@@ -144,8 +135,6 @@ public final class PaginaVentas extends javax.swing.JFrame {
                 .addGap(69, 69, 69)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
                 .addComponent(botonAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,8 +148,7 @@ public final class PaginaVentas extends javax.swing.JFrame {
                     .addComponent(botonAyuda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(botonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11)
-                        .addComponent(botonInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel11)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -474,12 +462,6 @@ public final class PaginaVentas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonAgregarActionPerformed
 
-    private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-        
-        Inventario inv = new Inventario();
-        inv.setVisible(true);
-    }//GEN-LAST:event_botonInventarioActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -517,7 +499,6 @@ public final class PaginaVentas extends javax.swing.JFrame {
     private javax.swing.JButton botonAgregar;
     private javax.swing.JButton botonAyuda;
     private javax.swing.JButton botonCerrarSesion;
-    private javax.swing.JButton botonInventario;
     private javax.swing.JButton botonRealizarVenta;
     private javax.swing.JLabel etiquetaArticulos;
     private javax.swing.JLabel etiquetaCambio;

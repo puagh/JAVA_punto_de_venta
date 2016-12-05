@@ -83,6 +83,11 @@ public final class PaginaAdmin extends javax.swing.JFrame {
 
         botonVentas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonVentas.setText("Usuarios");
+        botonVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVentasActionPerformed(evt);
+            }
+        });
 
         botonCerrarSesion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonCerrarSesion.setText("Cerrar Sesión");
@@ -203,12 +208,15 @@ public final class PaginaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-        // TODO add your handling code here:
-        
         Inventario inv = new Inventario();
         inv.setVisible(true);
-        
     }//GEN-LAST:event_botonInventarioActionPerformed
+
+    private void botonVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVentasActionPerformed
+        Usuarios usuarios = new Usuarios();
+        usuarios.setVisible(true);
+        
+    }//GEN-LAST:event_botonVentasActionPerformed
 
     /**
      * @param args the command line arguments
